@@ -9,5 +9,4 @@
     <StackLayout Margin="20" Orientation="Vertical">
         <Button Text="Retrieve word history" Clicked="getHistory" />
     </StackLayout>
-    
 </ContentPage>
