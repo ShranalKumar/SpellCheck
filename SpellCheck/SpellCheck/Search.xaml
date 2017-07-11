@@ -7,6 +7,6 @@
         <Label Text="Search" VerticalOptions="Center" HorizontalOptions="Center" />
     </ContentPage.Content>
     <StackLayout Margin="20" Orientation="Vertical">
-        <SearchBar x:Name="searchBar" Placeholder="Enter the word you want to search for" FontSize="Small"                 />
+        <SearchBar x:Name="searchBar" Placeholder="Enter the word you want to search for" FontSize="Small" />
     </StackLayout>
 </ContentPage>
