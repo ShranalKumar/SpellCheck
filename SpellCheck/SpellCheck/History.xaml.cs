@@ -12,9 +12,17 @@ namespace SpellCheck
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class History : ContentPage
     {
+        int count = 0;
         public History()
         {
             InitializeComponent();
+        }
+
+        private void getHistory(object sender, EventArgs e)
+        {
+            count++;
+
+            ((Button)sender).Text = count.ToString();
         }
     }
 }

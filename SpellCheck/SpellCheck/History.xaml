@@ -4,6 +4,10 @@
              x:Class="SpellCheck.History"
              Title="History">
     <ContentPage.Content>
-        <Label Text="History Page" VerticalOptions="Center" HorizontalOptions="Center" />
+        <Label Text="History Page" VerticalOptions="Center" HorizontalOptions="Center" />        
     </ContentPage.Content>
+    <StackLayout Margin="20" Orientation="Vertical">
+        <Button Text="Retrieve word history" Clicked="getHistory" />
+    </StackLayout>
+    
 </ContentPage>
