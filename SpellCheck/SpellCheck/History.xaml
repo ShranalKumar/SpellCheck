@@ -8,5 +8,17 @@
     </ContentPage.Content>
     <StackLayout Margin="20" Orientation="Vertical">
         <Button Text="Retrieve word history" Clicked="getHistory" />
+        <ListView x:Name="WordList" HasUnevenRows="True">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="{Binding word}" HorizontalOptions="FillAndExpand" Margin="20,0,0,0" VerticalTextAlignment="Start" />
+                            <Label Text="{Binding wordDescription}" Margin="20,0,0,0" VerticalTextAlignment="Center" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </StackLayout>
 </ContentPage>
