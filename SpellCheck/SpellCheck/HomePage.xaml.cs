@@ -6,6 +6,7 @@ using System.Net.Http.Headers;
 //using System.Net.WebUtility;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -33,7 +34,7 @@ namespace SpellCheck
             var queryString = searchBar.Text;
             client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", "233d11b1fba54760a24a2243eff1f6cc");
 
-            var uri = "https://api.cognitive.microsoft.com/bing/v5.0/spellcheck/?" + queryString;
+            var uri = "https://api.cognitive.microsoft.com/bing/v5.0/spellcheck/?text=" + queryString;
 
             HttpResponseMessage response;
 
