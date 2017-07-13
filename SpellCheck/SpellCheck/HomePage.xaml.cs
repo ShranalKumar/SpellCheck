@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
+//using System.Net.WebUtility;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -26,9 +27,7 @@ namespace SpellCheck
             InitializeComponent();
         }
 
-        public ICommand MakeRequest { get; set; }
-
-        async void MakeRequestExecute()
+        async void searchBar_SearchButtonPressed(object sender, EventArgs e)
         {
             var client = new HttpClient();
             var queryString = searchBar.Text;
@@ -42,8 +41,8 @@ namespace SpellCheck
 
             using (var content = new ByteArrayContent(byteData))
             {
-                content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-                response = await client.PostAsync(uri, content);                
+                content.Headers.ContentType = new MediaTypeHeaderValue("text/plain");
+                response = await client.PostAsync(uri, content);
             }
             correct.Text = response.ToString();
         }
