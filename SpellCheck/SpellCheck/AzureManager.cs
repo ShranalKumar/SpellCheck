@@ -40,5 +40,10 @@ namespace SpellCheck
         {
             return await this.spellCheckTable.ToListAsync();
         }
+
+        public async Task PostWord(skmuspellchecktable NewWord)
+        {
+            await this.spellCheckTable.InsertAsync(NewWord);
+        }
     }
 }

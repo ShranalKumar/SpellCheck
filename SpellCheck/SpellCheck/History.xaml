@@ -8,13 +8,12 @@
     </ContentPage.Content>
     <StackLayout Margin="20" Orientation="Vertical">
         <Button Text="Retrieve word history" Clicked="getHistory" />
-        <ListView x:Name="WordList" HasUnevenRows="True">
+        <ListView x:Name="WordList" HasUnevenRows="True" SeparatorVisibility="None">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout Orientation="Horizontal">
-                            <Label Text="{Binding word}" Margin="0,0,20,0" HorizontalTextAlignment="Start"/>
-                            <Label Text="{Binding wordDescription}" Margin="20,0,0,0" HorizontalTextAlignment="End"/>
+                        <StackLayout Orientation="Vertical" >
+                            <Label Text="{Binding word}" Margin="0,0,0,20" HorizontalTextAlignment="Start"/>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>

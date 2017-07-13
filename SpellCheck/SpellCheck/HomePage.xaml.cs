@@ -1,13 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Net.Http.Headers;
-//using System.Net.WebUtility;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web;
-using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -31,21 +25,35 @@ namespace SpellCheck
         async void searchBar_SearchButtonPressed(object sender, EventArgs e)
         {
             var client = new HttpClient();
-            var queryString = searchBar.Text;
             client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", "233d11b1fba54760a24a2243eff1f6cc");
 
-            var uri = "https://api.cognitive.microsoft.com/bing/v5.0/spellcheck/?text=" + queryString;
+            var uri = "https://api.cognitive.microsoft.com/bing/v5.0/spellcheck/?text=" + searchBar.Text;
 
-            HttpResponseMessage response;
+            var response = await client.GetAsync(uri);
 
-            byte[] byteData = Encoding.UTF8.GetBytes("{body}");
-
-            using (var content = new ByteArrayContent(byteData))
+            if (response.IsSuccessStatusCode)
             {
-                content.Headers.ContentType = new MediaTypeHeaderValue("text/plain");
-                response = await client.PostAsync(uri, content);
-            }
-            correct.Text = response.ToString();
+                var responseString = await response.Content.ReadAsStringAsync();
+                ResponseModel responseModel = JsonConvert.DeserializeObject<ResponseModel>(responseString);
+
+                try
+                {
+                    correct.Text = responseModel.flaggedTokens[0].suggestions[0].suggestion;
+
+                    
+                }
+                catch (Exception)
+                {
+                    correct.Text = searchBar.Text;
+                }
+
+                skmuspellchecktable NewWord = new skmuspellchecktable()
+                {
+                    word = correct.Text
+                };
+
+                await AzureManager.AzureManagerInstance.PostWord(NewWord);
+            }            
         }
     }
 }

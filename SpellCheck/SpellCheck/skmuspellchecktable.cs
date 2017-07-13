@@ -14,8 +14,5 @@ namespace SpellCheck
 
         [JsonProperty(PropertyName = "word")]
         public string word { get; set; }
-
-        [JsonProperty(PropertyName = "wordDescription")]
-        public string wordDescription { get; set; }
     }
 }
