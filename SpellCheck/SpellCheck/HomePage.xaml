@@ -7,6 +7,10 @@
         <Label Text="Home Page" VerticalOptions="Center" HorizontalOptions="Center" />
     </ContentPage.Content>
     <StackLayout Margin="20" Orientation="Vertical">
-        <SearchBar x:Name="searchBar" Placeholder="Enter word or phrase to spell check" FontSize="Small" />
+        <SearchBar x:Name="searchBar"
+                   Placeholder="Enter word or phrase to spell check"
+                   SearchButtonPressed="searchBar_SearchButtonPressed"
+                   FontSize="Small" />
+        <Label x:Name="correct" Text="Default" VerticalOptions="EndAndExpand" HorizontalOptions="Center" />
     </StackLayout>
 </ContentPage>
