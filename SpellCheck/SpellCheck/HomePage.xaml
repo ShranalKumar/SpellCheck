@@ -12,6 +12,16 @@
                    SearchButtonPressed="searchBar_SearchButtonPressed"
                    FontSize="Small" />
         <Label Text="Suggestions: " HorizontalOptions="Center" Margin="0,0,0,20" />
-        <Label x:Name="correct" HorizontalOptions="Start" Margin="20,0,0,0" />
+        <ListView x:Name="Suggesting" HasUnevenRows="True">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Vertical">
+                            <Label x:Name="suggested" Text="{Binding word}" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </StackLayout>
 </ContentPage>

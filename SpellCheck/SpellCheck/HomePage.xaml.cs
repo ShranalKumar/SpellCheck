@@ -10,13 +10,6 @@ namespace SpellCheck
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class HomePage : ContentPage
     {
-        private string _searchedText;
-        public string SearchedText
-        {
-            get { return _searchedText; }
-            set { _searchedText = value; }
-        }
-
         public HomePage()
         {
             InitializeComponent();
@@ -35,25 +28,42 @@ namespace SpellCheck
             {
                 var responseString = await response.Content.ReadAsStringAsync();
                 ResponseModel responseModel = JsonConvert.DeserializeObject<ResponseModel>(responseString);
+                List<wordsList> words = new List<wordsList>();
 
                 try
                 {
-                    correct.Text = responseModel.flaggedTokens[0].suggestions[0].suggestion;
+                    List<FlaggedTokens> flaggedTokens = responseModel.flaggedTokens;
 
-                    
+                    if (flaggedTokens.Count != 0)
+                    {
+                        foreach (FlaggedTokens tokens in flaggedTokens)
+                        {
+                            var flagged = tokens.token;
+                            List<Suggestions> suggestions = tokens.suggestions;
+
+                            foreach (Suggestions sug in suggestions)
+                            {
+                                words.Add(new wordsList() { word = sug.suggestion });
+
+                                skmuspellchecktable NewWord = new skmuspellchecktable() { word = flagged, corrected = sug.suggestion };
+                                await AzureManager.AzureManagerInstance.PostWord(NewWord);
+                            }
+                        }
+                    }
+                    else { words.Add(new wordsList() { word = "No suggestions" }); }
                 }
                 catch (Exception)
                 {
-                    correct.Text = searchBar.Text;
+                    words.Add(new wordsList() { word = "There has been an error!" });
                 }
 
-                skmuspellchecktable NewWord = new skmuspellchecktable()
-                {
-                    word = correct.Text
-                };
-
-                await AzureManager.AzureManagerInstance.PostWord(NewWord);
+                Suggesting.ItemsSource = words;               
             }            
         }
+    }
+
+    class wordsList
+    {
+        public string word { get; set; }
     }
 }
