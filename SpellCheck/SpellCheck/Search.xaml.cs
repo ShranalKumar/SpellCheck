@@ -17,6 +17,10 @@ namespace SpellCheck
             InitializeComponent();
         }
 
-
+        async void searchBar_SearchButtonPressed(object sender, EventArgs e)
+        {
+            List<skmuspellchecktable> spellCheckRows = await AzureManager.AzureManagerInstance.getAllRows();
+            searchedWord.ItemsSource = spellCheckRows.Where(x => x.corrected.ToLower().Contains(searchBar.Text.ToLower()));
+        }
     }
 }
