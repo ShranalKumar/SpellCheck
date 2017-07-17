@@ -19,13 +19,19 @@ namespace SpellCheck
 
         async void getHistory(object sender, EventArgs e)
         {
+            progress.IsVisible = true;
             List<skmuspellchecktable> spellCheckRows = await AzureManager.AzureManagerInstance.getAllRows();
+            await progress.ProgressTo(1, 500, Easing.Linear);
             WordList.ItemsSource = spellCheckRows.OrderByDescending(x => x.updatedAt);
+            progress.IsVisible = false;
+            clear.IsVisible = true;
+            progress.ProgressTo(0, 0, Easing.Linear);
         }
 
         void clearHistory(object sender, EventArgs e)
         {
             WordList.ItemsSource = "";
+            clear.IsVisible = false;
         }
     }
 }

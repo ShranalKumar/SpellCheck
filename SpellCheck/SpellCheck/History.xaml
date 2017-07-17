@@ -8,7 +8,8 @@
     </ContentPage.Content>
     <StackLayout Margin="20" Orientation="Vertical">
         <Button Text="Retrieve word history" Clicked="getHistory" />
-        <Button Text="Clear" Clicked="clearHistory" />
+        <Button x:Name="clear" Text="Clear" Clicked="clearHistory" IsVisible="False"/>
+        <ProgressBar x:Name="progress" IsVisible="False" IsEnabled="True" />
         <ListView x:Name="WordList" HasUnevenRows="True" SeparatorVisibility="None">
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -21,5 +22,5 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-    </StackLayout>
+    </StackLayout>    
 </ContentPage>

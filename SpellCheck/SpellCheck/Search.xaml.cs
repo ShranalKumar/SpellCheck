@@ -19,13 +19,20 @@ namespace SpellCheck
 
         async void searchBar_SearchButtonPressed(object sender, EventArgs e)
         {
+            progress.IsVisible = true;
             List<skmuspellchecktable> spellCheckRows = await AzureManager.AzureManagerInstance.getAllRows();
+            await progress.ProgressTo(1, 500, Easing.Linear);
             searchedWord.ItemsSource = spellCheckRows.Where(x => x.corrected.ToLower().Contains(searchBar.Text.ToLower()));
+            progress.IsVisible = false;
+            progress.ProgressTo(0, 0, Easing.Linear);
+            clear.IsVisible = true;
         }
 
         void clearHistory(object sender, EventArgs e)
         {
             searchedWord.ItemsSource = "";
+            searchBar.Text = "";
+            clear.IsVisible = false;
         }
     }
 }

@@ -9,7 +9,8 @@
     <StackLayout Margin="20" Orientation="Vertical">
         <SearchBar x:Name="searchBar" Placeholder="Enter the word you want to search for" 
                    FontSize="Small" SearchButtonPressed="searchBar_SearchButtonPressed" />
-        <Button Text="Clear" Clicked="clearHistory" />
+        <Button x:Name="clear" Text="Clear" Clicked="clearHistory" IsVisible="False" />
+        <ProgressBar x:Name="progress" IsVisible="False" IsEnabled="True" />
         <ListView x:Name="searchedWord" HasUnevenRows="True" SeparatorVisibility="None">
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -21,5 +22,5 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-    </StackLayout>
+    </StackLayout>    
 </ContentPage>

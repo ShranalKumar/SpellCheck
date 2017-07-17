@@ -17,6 +17,7 @@ namespace SpellCheck
 
         async void searchBar_SearchButtonPressed(object sender, EventArgs e)
         {
+            progress.IsVisible = true;
             var client = new HttpClient();
             client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", "233d11b1fba54760a24a2243eff1f6cc");
 
@@ -56,8 +57,11 @@ namespace SpellCheck
                 {
                     words.Add(new wordsList() { word = "There has been an error!" });
                 }
-
-                Suggesting.ItemsSource = words;               
+                await progress.ProgressTo(1, 500, Easing.Linear);
+                Suggesting.ItemsSource = words;
+                progress.IsVisible = false;
+                progress.ProgressTo(0, 0, Easing.Linear);
+                searchBar.Text = "";
             }            
         }
     }
