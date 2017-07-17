@@ -8,6 +8,7 @@
     </ContentPage.Content>
     <StackLayout Margin="20" Orientation="Vertical">
         <Button Text="Retrieve word history" Clicked="getHistory" />
+        <Button Text="Clear" Clicked="clearHistory" />
         <ListView x:Name="WordList" HasUnevenRows="True" SeparatorVisibility="None">
             <ListView.ItemTemplate>
                 <DataTemplate>

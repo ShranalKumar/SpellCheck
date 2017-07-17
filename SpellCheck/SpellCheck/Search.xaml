@@ -9,6 +9,7 @@
     <StackLayout Margin="20" Orientation="Vertical">
         <SearchBar x:Name="searchBar" Placeholder="Enter the word you want to search for" 
                    FontSize="Small" SearchButtonPressed="searchBar_SearchButtonPressed" />
+        <Button Text="Clear" Clicked="clearHistory" />
         <ListView x:Name="searchedWord" HasUnevenRows="True" SeparatorVisibility="None">
             <ListView.ItemTemplate>
                 <DataTemplate>

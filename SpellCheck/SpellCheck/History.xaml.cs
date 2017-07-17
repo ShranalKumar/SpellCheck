@@ -22,5 +22,10 @@ namespace SpellCheck
             List<skmuspellchecktable> spellCheckRows = await AzureManager.AzureManagerInstance.getAllRows();
             WordList.ItemsSource = spellCheckRows.OrderByDescending(x => x.updatedAt);
         }
+
+        void clearHistory(object sender, EventArgs e)
+        {
+            WordList.ItemsSource = "";
+        }
     }
 }

@@ -22,5 +22,10 @@ namespace SpellCheck
             List<skmuspellchecktable> spellCheckRows = await AzureManager.AzureManagerInstance.getAllRows();
             searchedWord.ItemsSource = spellCheckRows.Where(x => x.corrected.ToLower().Contains(searchBar.Text.ToLower()));
         }
+
+        void clearHistory(object sender, EventArgs e)
+        {
+            searchedWord.ItemsSource = "";
+        }
     }
 }
