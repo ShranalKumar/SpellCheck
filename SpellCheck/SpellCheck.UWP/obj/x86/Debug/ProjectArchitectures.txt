@@ -1,0 +1,2 @@
+G:\MSA\Spell\SpellCheck\SpellCheck.UWP\SpellCheck.UWP.csproj;x86
+G:\MSA\Spell\SpellCheck\SpellCheck\SpellCheck.csproj;neutral
