@@ -17,5 +17,8 @@ namespace SpellCheck
 
         [JsonProperty(PropertyName = "corrected")]
         public string corrected { get; set; }
+
+        [JsonProperty(PropertyName = "updatedAt")]
+        public DateTime updatedAt { get; set; }
     }
 }

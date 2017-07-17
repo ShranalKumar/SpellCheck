@@ -20,7 +20,7 @@ namespace SpellCheck
         async void getHistory(object sender, EventArgs e)
         {
             List<skmuspellchecktable> spellCheckRows = await AzureManager.AzureManagerInstance.getAllRows();
-            WordList.ItemsSource = spellCheckRows;
+            WordList.ItemsSource = spellCheckRows.OrderByDescending(x => x.updatedAt);
         }
     }
 }
