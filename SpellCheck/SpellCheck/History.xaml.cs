@@ -31,6 +31,7 @@ namespace SpellCheck
         void clearHistory(object sender, EventArgs e)
         {
             WordList.ItemsSource = "";
+            DisplayAlert("Alert!", "Page has been cleared", "Okay");
             clear.IsVisible = false;
         }
     }

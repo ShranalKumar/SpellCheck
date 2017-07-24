@@ -16,6 +16,7 @@
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout Orientation="Vertical">
+                            <Label Text="{Binding word}" HorizontalTextAlignment="Center" Margin="0,0,0,0" />
                             <Label Text="{Binding corrected}" HorizontalTextAlignment="Center" Margin="0,0,0,20" />
                         </StackLayout>
                     </ViewCell>

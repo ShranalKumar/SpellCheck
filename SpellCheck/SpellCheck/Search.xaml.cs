@@ -32,6 +32,7 @@ namespace SpellCheck
         {
             searchedWord.ItemsSource = "";
             searchBar.Text = "";
+            DisplayAlert("Alert!", "Page has been cleared", "Okay");
             clear.IsVisible = false;
         }
     }
